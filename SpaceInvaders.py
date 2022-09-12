@@ -60,14 +60,14 @@ no_of_invaders = 8
 
 spacing_X = 35
 spacing_Y = 35
+
 for num in range(no_of_invaders):
     invaderImage.append(pygame.image.load('data/alien.png'))
     invader_X.append(spacing_X)
     invader_Y.append(spacing_Y)
-    invader_Xchange.append(0.5)
-    invader_Ychange.append(50)
-    spacing_X = spacing_X + 80 
-    #spacing_Y = spacing_Y + 55
+    invader_Xchange.append(0.1)
+    invader_Ychange.append(35)
+    spacing_X = spacing_X + 60 
 
 # Bullet
 # rest - bullet is not moving
@@ -142,7 +142,6 @@ while running:
 
     # movement of the invader
     for i in range(no_of_invaders):
-        
         if invader_Y[i] >= 450:
             if abs(player_X-invader_X[i]) < 80:
                 for j in range(no_of_invaders):
@@ -153,6 +152,7 @@ while running:
         if invader_X[i] >= 535 or invader_X[i] <= 0:
             invader_Xchange[i] *= -1
             invader_Y[i] += invader_Ychange[i]
+            print(invader_Ychange)
         # Collision
         collision = isCollision(bullet_X, invader_X[i],
                                 bullet_Y, invader_Y[i])
@@ -173,7 +173,6 @@ while running:
         player_X = 16;
     elif player_X >= 550:
         player_X = 550
-
 
     player(player_X, player_Y)
     show_score(scoreX, scoreY)
